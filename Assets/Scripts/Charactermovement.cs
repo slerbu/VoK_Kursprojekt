@@ -1,30 +1,29 @@
-using System.Numerics;
 using UnityEngine;
 
-public class Charactermovement: MonoBehaviour
+public class Charactermovement : MonoBehaviour
 {
-    UnityEngine.Vector2 Speed;  
+    Vector2 Speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     Speed = new UnityEngine.Vector2(0, 0); 
+        Speed = new Vector2(0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-            //Varje frame ökar vektorer med Speed
-            transform.Translate(Speed * Time.deltaTime);
-            KeyboardController();
-            
+        //Varje frame ökar vektorer med Speed
+        transform.Translate(Speed * Time.deltaTime);
+        KeyboardController();
 
-    }   
+
+    }
 
     void KeyboardController()
     {
         if (Input.GetKey(KeyCode.RightArrow))
-        {   
+        {
             Speed.x = 1;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -41,8 +40,8 @@ public class Charactermovement: MonoBehaviour
             Speed.y = -1;
         }
 
-        
-        
+
+
         else
         {
             Speed.x = 0;
