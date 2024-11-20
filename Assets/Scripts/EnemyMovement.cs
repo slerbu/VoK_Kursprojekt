@@ -5,15 +5,18 @@ public class EnemyMovement: MonoBehaviour
 {
 
     GameObject[] Clouds;
-    GameObject Cloud;
+    GameObject Waypoint;
+    GameObject[] Waypoints;
+    int WaypointIndex; 
     
-    float Speed = 0.01f; 
+    float Speed = 0.002f; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Clouds = GameObject.FindGameObjectsWithTag("Cloud");
+        Waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
         
-        Cloud = GameObject.Find("Cloud");
+        Waypoint = GameObject.Find("Waypoint");
+
     }
 
     // Update is called once per frame
@@ -23,12 +26,17 @@ public class EnemyMovement: MonoBehaviour
 
         //Direction.Normalize();
         //transform.Translate(Direction*Speed)
-
         
+
+        if (Vector2.Distance(transform.position, Waypoints[WaypointIndex].transform.position) < 1) {
+            WaypointIndex = Random.Range(0,5);
+        }
             
 
 
-        transform.position = Vector2.MoveTowards(transform.position, Cloud.transform.position, Speed);
+        //transform.position = Vector2.MoveTowards(transform.position, Waypoint.transform.position, Speed);
+        transform.position = Vector2.MoveTowards(transform.position, Waypoints[WaypointIndex].transform.position, Speed);
+        
 
         
         

@@ -16,6 +16,7 @@ public class Charactermovement : MonoBehaviour
         //Varje frame ökar vektorer med Speed
         transform.Translate(Speed * Time.deltaTime);
         KeyboardController();
+        
 
 
     }
@@ -24,20 +25,20 @@ public class Charactermovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Speed.x = 1;
+            Speed.x = 2;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Speed.x = -1;
+            Speed.x = -2;
         }
 
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            Speed.y = 1;
+            Speed.y = 2;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            Speed.y = -1;
+            Speed.y = -2;
         }
 
 
@@ -48,5 +49,8 @@ public class Charactermovement : MonoBehaviour
             Speed.y = 0;
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D c){
+        Debug.Log("Rip");
     }
 }
