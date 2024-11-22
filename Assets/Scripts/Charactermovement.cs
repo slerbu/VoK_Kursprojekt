@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Charactermovement : MonoBehaviour
 {
@@ -21,24 +22,39 @@ public class Charactermovement : MonoBehaviour
 
     }
 
+    //Rörelse för spelaren
+
     void KeyboardController()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            Speed.x = 2;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            Speed.x = -2;
-        }
 
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Speed.y = 2;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            Speed.y = -2;
+        if (Input.anyKey){
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                Speed.x = 2;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                Speed.x = -2;
+            }
+            else
+            {
+            Speed.x = 0;
+            }
+
+
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                Speed.y = 2;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                Speed.y = -2;
+            }
+            else
+            {
+            Speed.y = 0;
+            }
+
         }
 
 
@@ -50,7 +66,12 @@ public class Charactermovement : MonoBehaviour
         }
 
     }
+
+    //Startar om spelet då spelaren kolliderar med fiende
+
     private void OnTriggerEnter2D(Collider2D c){
-        Debug.Log("Rip");
+        //Debug.Log("Rip");
+        string myScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(myScene);
     }
 }
