@@ -13,6 +13,7 @@ public class GrabObjects : MonoBehaviour
 
     private GameObject grabbedObject;  // The currently grabbed object.
     private int layerIndex;            // Layer for "objects"
+    private FixedJoint2D joint;        // The FixedJoint2D component for attaching the object.
 
     private void Start()
     {
@@ -37,28 +38,23 @@ public class GrabObjects : MonoBehaviour
 
                 if (rb != null)
                 {
-                    // Make the object kinematic to prevent physics from affecting it.
-                    rb.isKinematic = true;
+                    // Create and attach the FixedJoint2D component.
+                    joint = grabbedObject.AddComponent<FixedJoint2D>();
 
-                    // Set the object’s position to the grab point.
-                    grabbedObject.transform.position = grabPoint.position;
+                    // Set the joint's connected body to the player's Rigidbody2D.
+                    joint.connectedBody = GetComponent<Rigidbody2D>();
 
-                    // Set the object as a child of the grab point so it follows the player.
-                    grabbedObject.transform.SetParent(grabPoint);
+                    // Optionally, set the joint's anchor to the grab point.
+                    joint.anchor = grabbedObject.transform.InverseTransformPoint(grabPoint.position);
                 }
             }
             // If space key is pressed again, release the object.
             else if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (grabbedObject != null)
+                if (grabbedObject != null && joint != null)
                 {
-                    Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
-
-                    // Restore the object’s physics behavior.
-                    rb.isKinematic = false;
-
-                    // Detach the object from the parent (stop following the grab point).
-                    grabbedObject.transform.SetParent(null);
+                    // Destroy the FixedJoint2D when the object is released.
+                    Destroy(joint);
 
                     // Reset the grabbed object reference.
                     grabbedObject = null;
@@ -67,15 +63,17 @@ public class GrabObjects : MonoBehaviour
         }
 
         // Visualize the ray in the Scene view (for debugging).
-        Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+        Debug.DrawRay(rayPoint.position, rayPoint.right * rayDistance, Color.red);
 
         // If there is a grabbed object, update its position to follow the grab point.
         if (grabbedObject != null)
         {
-            grabbedObject.transform.position = grabPoint.position;  // Keep it at the grab point.
+            grabbedObject.transform.position = grabPoint.position;
         }
     }
 }
+
+
 
 
 
