@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1eabdfa570786c64e8686b1a6c00c5ca
+timeCreated: 1542848693
+licenseType: Store
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 133709
+  packageName: 2D Planets
+  packageVersion: 1.0
+  assetPath: Assets/PlanetPackFree/ReadMe.txt
+  uploadId: 279786

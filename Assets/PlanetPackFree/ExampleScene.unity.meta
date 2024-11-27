@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8e8c98455aebda34b9c66d4d4763ea8c
+timeCreated: 1542848491
+licenseType: Store
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 133709
+  packageName: 2D Planets
+  packageVersion: 1.0
+  assetPath: Assets/PlanetPackFree/ExampleScene.unity
+  uploadId: 279786
