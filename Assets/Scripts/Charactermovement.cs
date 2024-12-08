@@ -26,8 +26,11 @@ public class Charactermovement : MonoBehaviour
 
     void KeyboardController()
     {
+        
+        Speed.x = 0;
+        Speed.y = 0;
 
-        if (Input.anyKey){
+     /*   if (Input.anyKey){
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 Speed.x = 2;
@@ -55,15 +58,33 @@ public class Charactermovement : MonoBehaviour
             Speed.y = 0;
             }
 
-        }
+        }*/
 
 
 
-        else
+
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            Speed.x = 0;
-            Speed.y = 0;
+            Speed.x = 2;
         }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            Speed.x = -2;
+        }
+
+
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            Speed.y = 2;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            Speed.y = -2;
+        }
+
+
+
 
     }
 
