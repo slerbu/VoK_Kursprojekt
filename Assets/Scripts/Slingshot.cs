@@ -12,7 +12,6 @@ public class Slingshot : MonoBehaviour
 
     Rigidbody2D Asteroid;
     SpringJoint2D Sling;
-    float releaseDelay;
     float maxStretch = 3f;
     //Vector2 force;
     Rigidbody2D SlingRb;
@@ -32,7 +31,7 @@ public class Slingshot : MonoBehaviour
         
     
 
-        releaseDelay = 1 / (Sling.frequency *4);
+        
     }
 
 
@@ -63,7 +62,7 @@ public class Slingshot : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     
         float distance = Vector2.Distance(mousePosition, SlingRb.position);
-        //force = distance * 30;
+    
 
         if (distance > maxStretch) {
             Vector2 direction = (mousePosition - SlingRb.position).normalized;
@@ -85,7 +84,7 @@ public class Slingshot : MonoBehaviour
     }*/
 
     void Release() {
-        //yield return new WaitForSeconds(releaseDelay);
+        
         float distance = Vector2.Distance(Asteroid.position, SlingRb.position);
         Vector2 direction = (SlingRb.position - Asteroid.position).normalized;
         Vector2 force = direction * distance*60;
